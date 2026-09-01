@@ -1,14 +1,17 @@
-import java.security.PublicKey;
-
+import java.util.List;  //imports
+import java.util.ArrayList;
 public class ContaBancaria {
     // atributos
     private String titular;
     private int numeroConta;
     private double saldo;
+    private List<String> historico;  //atribuicao da lista
 
+    //construtor
     public ContaBancaria(String titular, int numeroConta, double saldoInicial) {
         this.titular = titular;
         this.numeroConta = numeroConta;
+        this.historico = new ArrayList<>();  // criacao da lista
         if (saldoInicial >= 0) {
             this.saldo = saldoInicial;
         } else
@@ -18,14 +21,37 @@ public class ContaBancaria {
     public void depositar(double valor) {
         if (valor > 0) {
             this.saldo = this.saldo + valor;
+            historico.add("Valor Depositado em : R$" + valor);
+        } else {
+            System.out.println("Valor de Depósito Invalido!");
         }
     }
     public void sacar (double valor) {
         if (valor > 0 && valor <= this.saldo) {
             this.saldo = this.saldo - valor;
+            historico.add("Valor Sacado em : R$" + valor);
             System.out.println("Valor Sacado!");
         } else {
             System.out.println("Valor Indisponivel para Saque!");
+        }
+    }
+    public void transferir (double valor, ContaBancaria contaDestino){
+        if (valor > 0 && valor <= this.saldo){
+            this.saldo = this.saldo - valor;
+            historico.add("Valor Transferido em : R$" + valor);
+            contaDestino.saldo = contaDestino.saldo + valor;
+            contaDestino.historico.add("Valor Recebido em : R$" + valor); // historico da contaDestino
+        }else {
+            System.out.println("Valor Indisponivel para transferencia!");
+        }
+    }
+
+    public void exibirHistorico(){ //criacao do metodo utilizando array
+        System.out.println("==========================");
+        System.out.println("Historico De Movimentações");
+        System.out.println("==========================");
+        for (String transacao : this.historico){
+            System.out.println(transacao);
         }
     }
     // get s
