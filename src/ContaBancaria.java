@@ -1,5 +1,6 @@
 import java.util.List;  //imports
 import java.util.ArrayList;
+
 public class ContaBancaria {
     // atributos
     private String titular;
@@ -17,6 +18,7 @@ public class ContaBancaria {
         } else
             this.saldo = 0;
     }
+
     // metodos
     public void depositar(double valor) {
         if (valor > 0) {
@@ -26,41 +28,45 @@ public class ContaBancaria {
             System.out.println("Valor de Depósito Invalido!");
         }
     }
-    public void sacar (double valor) {
+
+    public void sacar(double valor) {
         if (valor > 0 && valor <= this.saldo) {
             this.saldo = this.saldo - valor;
             historico.add("Valor Sacado em : R$" + valor);
-            System.out.println("Valor Sacado!");
         } else {
             System.out.println("Valor Indisponivel para Saque!");
         }
     }
-    public void transferir (double valor, ContaBancaria contaDestino){
-        if (valor > 0 && valor <= this.saldo){
+
+    public void transferir(double valor, ContaBancaria contaDestino) {
+        if (valor > 0 && valor <= this.saldo) {
             this.saldo = this.saldo - valor;
             historico.add("Valor Transferido em : R$" + valor);
             contaDestino.saldo = contaDestino.saldo + valor;
             contaDestino.historico.add("Valor Recebido em : R$" + valor); // historico da contaDestino
-        }else {
+        } else {
             System.out.println("Valor Indisponivel para transferencia!");
         }
     }
 
-    public void exibirHistorico(){ //criacao do metodo utilizando array
+    public void exibirHistorico() { //criacao do metodo utilizando array
         System.out.println("==========================");
         System.out.println("Historico De Movimentações");
         System.out.println("==========================");
-        for (String transacao : this.historico){
+        for (String transacao : this.historico) {
             System.out.println(transacao);
         }
     }
+
     // get s
     public double getSaldo() {
         return saldo;
     }
+
     public int getNumeroConta() {
         return numeroConta;
     }
+
     public String getTitular() {
         return titular;
     }
