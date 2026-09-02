@@ -1,7 +1,5 @@
-public class ContaNaoEncontradaException extends Exception{
-    public ContaNaoEncontradaException (String mensagem){
-        super (mensagem);
-
+public class ContaNaoEncontradaException extends Exception{   // heranca da except
+    public ContaNaoEncontradaException (String mensagem){ // abertura do construtor
+        super (mensagem);  // acesso da classe pai
     }
-
 }

@@ -16,12 +16,12 @@ public class Main {
         conta2.exibirHistorico(); //materializacao do historico c2
         System.out.println("Saldo da Conta de Isabelly : " + conta2.getSaldo());
 
-        ContaDAO dao = new ContaDAO();
-        try {
+        ContaDAO dao = new ContaDAO(); // abertura do objeto
+        try { // exec do fluxo padrao
             dao.buscarporNumero("123");
             System.out.println("Conta Encontrada!");
         }
-        catch (ContaNaoEncontradaException e) {
+        catch (ContaNaoEncontradaException e) { // tratamento do erro
             System.out.println(e.getMessage());
         }
 
