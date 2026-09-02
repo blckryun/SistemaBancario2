@@ -1,30 +1,37 @@
 public class Main {
     public static void main(String[] args) {
-        ContaBancaria conta1 = new ContaBancaria("Gabriel", 1, 2000); //conta1
-        ContaBancaria conta2 = new ContaBancaria("Isabelly", 2, 500); //contaDestino
-
-        conta1.depositar(500); //teste deposito c1
-        conta1.sacar(500); //saque c1
-        conta1.transferir(1000, conta2); //transferencia da c1 para c2
-
-        conta2.depositar(500); //teste deposito c2
-        conta2.sacar(600); //teste saque c2
-
-
-        conta1.exibirHistorico(); //materializacao do historico c1
-        System.out.println("Saldo da Conta de Gabriel : " + conta1.getSaldo());
-        conta2.exibirHistorico(); //materializacao do historico c2
-        System.out.println("Saldo da Conta de Isabelly : " + conta2.getSaldo());
-
+        ContaBancaria conta1 = new ContaBancaria("Gabriel", "1", 2000); //conta1
+        ContaBancaria conta2 = new ContaBancaria("Isabelly", "2", 1000); //contaDestino
         ContaDAO dao = new ContaDAO(); // abertura do objeto
-        try { // exec do fluxo padrao
-            dao.buscarporNumero("123");
-            System.out.println("Conta Encontrada!");
-        }
-        catch (ContaNaoEncontradaException e) { // tratamento do erro
+        dao.cadastrar(conta1); // metodo de cadastro
+        dao.cadastrar(conta2); // metodo de cadastro
+
+        try {
+            conta1 = dao.buscarporNumero("1");
+            System.out.println("==========================");
+            System.out.println("Historico de Movimentacoes");
+            System.out.println("Titular : " + conta1.getTitular());
+            System.out.println("Saldo Inicial : R$" + conta1.getSaldo());
+            conta1.depositar(1000);
+            conta1.sacar(500);
+            conta1.transferir(500 ,conta2);
+            conta1.exibirHistorico();
+        } catch (ContaNaoEncontradaException e) {
             System.out.println(e.getMessage());
         }
 
-
+        try {
+            conta2 = dao.buscarporNumero("2");
+            System.out.println("==========================");
+            System.out.println("Historico de Movimentacoes");
+            System.out.println("Titular : " + conta2.getTitular());
+            System.out.println("Saldo Inicial : R$" + conta2.getSaldo());
+            conta2.depositar(500);
+            conta2.sacar(700);
+            conta2.exibirHistorico();
+            System.out.println("==========================");
+        } catch (ContaNaoEncontradaException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

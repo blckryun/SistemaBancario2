@@ -4,14 +4,14 @@ import java.util.ArrayList;
 public class ContaBancaria {
     // atributos
     private String titular;
-    private int numeroConta;
     private double saldo;
+    private String numero;
     private List<String> historico;  //atribuicao da lista
 
     //construtor
-    public ContaBancaria(String titular, int numeroConta, double saldoInicial) {
+    public ContaBancaria(String titular, String numero , double saldoInicial) {
+        this.numero = numero;
         this.titular = titular;
-        this.numeroConta = numeroConta;
         this.historico = new ArrayList<>();  // criacao da lista
         if (saldoInicial >= 0) {
             this.saldo = saldoInicial;
@@ -50,9 +50,6 @@ public class ContaBancaria {
     }
 
     public void exibirHistorico() { //criacao do metodo utilizando array
-        System.out.println("==========================");
-        System.out.println("Historico De Movimentações");
-        System.out.println("==========================");
         for (String transacao : this.historico) {
             System.out.println(transacao);
         }
@@ -62,13 +59,11 @@ public class ContaBancaria {
     public double getSaldo() {
         return saldo;
     }
-
-    public int getNumeroConta() {
-        return numeroConta;
-    }
-
     public String getTitular() {
         return titular;
+    }
+    public String getnumero(){
+        return numero;
     }
 }
 
