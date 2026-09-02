@@ -15,5 +15,16 @@ public class Main {
         System.out.println("Saldo da Conta de Gabriel : " + conta1.getSaldo());
         conta2.exibirHistorico(); //materializacao do historico c2
         System.out.println("Saldo da Conta de Isabelly : " + conta2.getSaldo());
+
+        ContaDAO dao = new ContaDAO();
+        try {
+            dao.buscarporNumero("123");
+            System.out.println("Conta Encontrada!");
+        }
+        catch (ContaNaoEncontradaException e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 }
