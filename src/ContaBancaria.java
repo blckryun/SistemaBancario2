@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class ContaBancaria {
     // atributos
-    private String titular;
-    private double saldo;
-    private String numero;
-    private List<String> historico;  //atribuicao da lista
+    protected String titular;
+    protected double saldo;
+    protected String numero;
+    protected List<String> historico;  //atribuicao da lista
 
     //construtor
     public ContaBancaria(String titular, String numero , double saldoInicial) {
