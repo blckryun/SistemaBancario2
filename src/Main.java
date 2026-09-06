@@ -6,6 +6,11 @@ public class Main {
         dao.cadastrar(conta1); // metodo de cadastro
         dao.cadastrar(conta2); // metodo de cadastro
 
+        ContaCorrente cc = new ContaCorrente("Nome : ", 100, "12345", 500.00);
+        boolean sacou = cc.sacar(700);
+        System.out.println("Saldo Atualiazado " + sacou);
+        System.out.println("Saldo Atualiazado em R$ " +  cc.saldo + " Com Cheque Especial ");
+
         try {
             conta1 = dao.buscarporNumero("1");
             System.out.println("==========================");

@@ -9,7 +9,7 @@ public class ContaBancaria {
     protected List<String> historico;  //atribuicao da lista
 
     //construtor
-    public ContaBancaria(String titular, String numero , double saldoInicial) {
+    public ContaBancaria(String titular, String numero, double saldoInicial) {
         this.numero = numero;
         this.titular = titular;
         this.historico = new ArrayList<>();  // criacao da lista
@@ -29,12 +29,14 @@ public class ContaBancaria {
         }
     }
 
-    public void sacar(double valor) {
+    public boolean sacar(double valor) {
         if (valor > 0 && valor <= this.saldo) {
             this.saldo = this.saldo - valor;
             historico.add("Valor Sacado em : R$" + valor);
+            return true;
         } else {
             System.out.println("Valor Indisponivel para Saque!");
+            return false;
         }
     }
 
