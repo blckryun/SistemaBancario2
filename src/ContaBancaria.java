@@ -1,6 +1,7 @@
 import java.util.List;  //imports
 import java.util.ArrayList;
 
+
 public class ContaBancaria {
     // atributos
     protected String titular;
@@ -20,7 +21,7 @@ public class ContaBancaria {
     }
 
     // metodos
-    public void depositar(double valor) {
+    public void depositar (double valor) {
         if (valor > 0) {
             this.saldo = this.saldo + valor;
             historico.add("Valor Depositado em : R$" + valor);
@@ -29,27 +30,20 @@ public class ContaBancaria {
         }
     }
 
-    public boolean sacar(double valor) {
+    public boolean sacar (double valor) throws SaldoInsuficienteException {
         if (valor > 0 && valor <= this.saldo) {
             this.saldo = this.saldo - valor;
             historico.add("Valor Sacado em : R$" + valor);
-            return true;
         } else {
-            System.out.println("Valor Indisponivel para Saque!");
-            return false;
+            throw new SaldoInsuficienteException("Saldo Insuficiente");
         }
     }
 
-    public void transferir(double valor, ContaBancaria contaDestino) {
-        if (valor > 0 && valor <= this.saldo) {
-            this.saldo = this.saldo - valor;
-            historico.add("Valor Transferido em : R$" + valor);
-            contaDestino.saldo = contaDestino.saldo + valor;
-            contaDestino.historico.add("Valor Recebido em : R$" + valor); // historico da contaDestino
-        } else {
-            System.out.println("Valor Indisponivel para transferencia!");
-        }
+    public void transferir (double valor, ContaBancaria contaDestino) throws SaldoInsuficienteException{
+        this.sacar(valor);
+        contaDestino.depositar(valor);
     }
+
 
     public void exibirHistorico() { //criacao do metodo utilizando array
         for (String transacao : this.historico) {
