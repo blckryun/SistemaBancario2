@@ -7,11 +7,14 @@ public class Main {
         dao.cadastrar(conta2); // metodo de cadastro
 
 
-        ContaCorrente cc = new ContaCorrente("Nome : ", 100, "12345", 500.00);
-        boolean sacou = cc.sacar(700);
-        System.out.println("Saldo Atualiazado " + sacou);
-        System.out.println("Saldo Atualiazado em R$ " +  cc.saldo + " Com Cheque Especial ");
-
+        ContaCorrente cc = new ContaCorrente("Nome : ", "100", 12345, 500.00);
+        try {
+            boolean sacou = cc.sacar(700);
+            System.out.println("Saldo Atualiazado " + sacou);
+            System.out.println("Saldo Atualiazado em R$ " + cc.getSaldo() + " Com Cheque Especial ");
+        } catch (SaldoInsuficienteException e){
+            System.out.println(e.getMessage());
+        }
 
         try {
             conta1 = dao.buscarporNumero("1");
@@ -35,5 +38,7 @@ public class Main {
             conta2.exibirHistorico();
         } catch (ContaNaoEncontradaException | SaldoInsuficienteException exception) {
         }
+
+
     }
 }

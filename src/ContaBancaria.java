@@ -34,6 +34,7 @@ public class ContaBancaria {
         if (valor > 0 && valor <= this.saldo) {
             this.saldo = this.saldo - valor;
             historico.add("Valor Sacado em : R$" + valor);
+            return true;
         } else {
             throw new SaldoInsuficienteException("Saldo Insuficiente");
         }
