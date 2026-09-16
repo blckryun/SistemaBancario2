@@ -1,8 +1,11 @@
 import javax.xml.transform.Source;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
+        Conexao.conectar();
         ContaBancaria conta1 = new ContaBancaria("Gabriel", "1", 2000); //conta1
         ContaBancaria conta2 = new ContaBancaria("Isabelly", "2", 1000); //contaDestino
         ContaDAO dao = new ContaDAO(); // abertura do objeto

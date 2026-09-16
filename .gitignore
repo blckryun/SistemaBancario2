@@ -28,3 +28,10 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Configuracoes Locais e Chaves ###
+.env
+*.env
+config.properties
+.idea/
+*.iml
