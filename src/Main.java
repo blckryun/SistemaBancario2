@@ -23,7 +23,7 @@ public class Main {
         }
 
         try {
-            conta1 = dao.buscarporNumero("1");
+            conta1 = dao.buscarPorNumero("1");
             System.out.println("Historico de Movimentacoes");
             System.out.println("Titular : " + conta1.getTitular());
             System.out.println("Saldo Inicial : R$" + conta1.getSaldo());
@@ -63,7 +63,7 @@ public class Main {
                     double valor = scanner.nextDouble();
 
                     try {
-                        ContaBancaria contaDestino = dao.buscarporNumero(numdestino);
+                        ContaBancaria contaDestino = dao.buscarPorNumero(numdestino);
                         conta1.transferir(valor, contaDestino);
                         System.out.println("Transferencia Realizada com Sucesso!");
                     } catch (ContaNaoEncontradaException | SaldoInsuficienteException exception) {
